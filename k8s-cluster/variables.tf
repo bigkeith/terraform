@@ -20,3 +20,9 @@ variable "pm_tls_insecure" {
   type        = bool
   default     = true
 }
+
+variable "ssh_public_key" {
+  description = "ssh pub key"
+  type        = string
+  sensitive   = true
+}

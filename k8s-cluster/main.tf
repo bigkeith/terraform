@@ -6,6 +6,9 @@ module "control_plane" {
   cores       = 2
   memory      = 4096
   ssh_key     = var.ssh_public_key
+  storage_pool = "datastoreHDD1"
+  disk_size   = 20
+  template_name = "ubuntu-cloud-template"
   # ... other variables
 }
 
@@ -18,4 +21,7 @@ module "workers" {
   cores       = 4
   memory      = 4096
   ssh_key     = var.ssh_public_key
+  disk_size   = 20
+  storage_pool = "datastoreHDD1"
+  template_name = "ubuntu-cloud-template"
 }
