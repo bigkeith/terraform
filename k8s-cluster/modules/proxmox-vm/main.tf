@@ -12,10 +12,12 @@ resource "proxmox_vm_qemu" "vm" {
   target_node = var.target_node
   vmid        = var.vmid
   clone       = var.template_name
-  
+  agent   = 1
   cores   = var.cores
   memory  = var.memory
+  scsihw = "virtio-scsi-pci"
   boot    = "order=scsi0"
+  ipconfig0 = "ip=${var.ip_address},gw=${var.gateway}"
 
   disk {
     slot    = "scsi0"
@@ -32,6 +34,14 @@ resource "proxmox_vm_qemu" "vm" {
   }
 
   os_type   = "cloud-init"
-  ipconfig0 = "ip=dhcp"
+  #ipconfig0 = "ip=dhcp"
   sshkeys   = var.ssh_key
+
+#network device
+network {
+    id = 0
+    bridge = var.network_bridge
+    model  = "virtio"
+  }
+
 }

@@ -9,7 +9,9 @@ module "control_plane" {
   storage_pool = "datastoreHDD1"
   disk_size   = 20
   template_name = "ubuntu-cloud-template"
-  # ... other variables
+  ip_address = "192.168.1.150/24"
+  
+  
 }
 
 # Create 3 Worker Nodes
@@ -24,4 +26,5 @@ module "workers" {
   disk_size   = 20
   storage_pool = "datastoreHDD1"
   template_name = "ubuntu-cloud-template"
+  ip_address = "192.168.1.${151 + count.index}/24"
 }
