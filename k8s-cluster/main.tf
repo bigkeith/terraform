@@ -34,7 +34,7 @@ module "lab" {
   source      = "./modules/proxmox-vm"
   count       = 1
   vm_name     = "lab01"
-  vmid        = 600 + count.index
+  vmid        = 800 
   cores       = 4
   memory      = 2048
   ssh_key     = var.ssh_public_key
