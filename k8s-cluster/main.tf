@@ -30,10 +30,10 @@ module "workers" {
 }
 
 # Create 1 single Node cluster lab
-module "workers" {
+module "lab" {
   source      = "./modules/proxmox-vm"
   count       = 1
-  vm_name     = "k8s-worker-${count.index}"
+  vm_name     = "lab01"
   vmid        = 600 + count.index
   cores       = 4
   memory      = 2048
