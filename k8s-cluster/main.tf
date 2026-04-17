@@ -29,7 +29,7 @@ module "workers" {
   ip_address = "192.168.1.${151 + count.index}/24"
 }
 
-# Create 1 single Node cluster lab
+# Create 1 single Node cluster lab control plane
 module "lab" {
   source      = "./modules/proxmox-vm"
   count       = 1
@@ -41,5 +41,19 @@ module "lab" {
   disk_size   = 20
   storage_pool = "datastoreHDD1"
   template_name = "ubuntu-cloud-template"
-  ip_address = "192.168.1.${151 + count.index}/24"
+  ip_address = "192.168.1.160/24"
+}
+# Create 1 single Node cluster lab worker node
+module "lab-worker" {
+  source      = "./modules/proxmox-vm"
+  count       = 1
+  vm_name     = "lab01-worker"
+  vmid        = 801 
+  cores       = 4
+  memory      = 2048
+  ssh_key     = var.ssh_public_key
+  disk_size   = 20
+  storage_pool = "datastoreHDD1"
+  template_name = "ubuntu-cloud-template"
+  ip_address = "192.168.1.161/24"
 }
