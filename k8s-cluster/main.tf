@@ -57,3 +57,17 @@ module "lab-worker" {
   template_name = "ubuntu-cloud-template"
   ip_address = "192.168.1.161/24"
 }
+#NFS server
+module "nfs-server" {
+  source      = "./modules/proxmox-vm"
+  count       = 1
+  vm_name     = "nfs-server"
+  vmid        = 400 
+  cores       = 4
+  memory      = 2048
+  ssh_key     = var.ssh_public_key
+  disk_size   = 20
+  storage_pool = "datastoreHDD1"
+  template_name = "ubuntu-cloud-template"
+  ip_address = "192.168.1.163/24"
+}

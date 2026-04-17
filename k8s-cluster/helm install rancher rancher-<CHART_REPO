@@ -1,0 +1,6 @@
+helm install rancher rancher-<CHART_REPO>/rancher \
+  --namespace cattle-system \
+  --set hostname=rancher.2256north.local \
+  --set bootstrapPassword=6000Randstone#
+
+  https://artifacthub.io/packages/helm/carbide-ch
